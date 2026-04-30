@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S1-F3-C2 — Principal Residence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208;
+      --parchment: #f5f0e8;
+      --rule: #c8b89a;
+      --accent: #8b1a1a;
+      --margin-note: #6b5c3e;
+      --highlight: #e8dfc8;
+      --code-bg: #ede8de;
+      --subhead-bg: #eae4d8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #d6cfc0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          rgba(180,165,140,0.25) 27px,
+          rgba(180,165,140,0.25) 28px
+        );
+      font-family: 'Libre Baskerville', Georgia, serif;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .document {
+      background: var(--parchment);
+      max-width: 860px;
+      width: 100%;
+      border: 1px solid var(--rule);
+      box-shadow:
+        0 2px 0 #b8a882,
+        4px 6px 32px rgba(0,0,0,0.22),
+        0 0 0 6px rgba(245,240,232,0.6);
+      padding: 4rem 5rem 5rem;
+      position: relative;
+      border-radius: 1px;
+    }
+
+    /* Red margin rule */
+    .document::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 4.2rem;
+      width: 1.5px;
+      height: 100%;
+      background: rgba(139,26,26,0.18);
+    }
+
+    /* Top rule */
+    .document::after {
+      content: '';
+      position: absolute;
+      top: 2.8rem;
+      left: 3rem;
+      right: 3rem;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent) 0 18px, transparent 18px 100%);
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .folio-ref {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--margin-note);
+      margin-bottom: 0.4rem;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-meta {
+      margin-top: 0.7rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.72rem;
+      color: var(--margin-note);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--margin-note);
+      font-style: italic;
+      margin-bottom: 2rem;
+      padding-left: 0.2rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.8rem;
+      line-height: 1.6;
+    }
+
+    /* ── SUMMARY BOX ── */
+    .summary-box {
+      background: var(--code-bg);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--accent);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .summary-box .box-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .summary-box p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .summary-box p:last-child { margin-bottom: 0; }
+
+    /* ── DISCLAIMER BOX ── */
+    .disclaimer {
+      background: var(--subhead-bg);
+      border: 1px solid var(--rule);
+      padding: 1rem 1.2rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: var(--margin-note);
+      font-style: italic;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin: 2.4rem 0 1rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1.5px solid var(--rule);
+    }
+
+    /* ── PARAGRAPH ── */
+    .para {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr;
+      gap: 0 0.6rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .para-num {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      padding-top: 0.12em;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .para-body {
+      font-size: 0.945rem;
+      line-height: 1.85;
+      color: var(--ink);
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .para-body em { font-style: italic; }
+
+    /* ── LIFE EVENTS LIST ── */
+    .life-events {
+      list-style: none;
+      margin: 0.6rem 0 0.4rem;
+      padding: 0;
+    }
+
+    .life-events li {
+      display: grid;
+      grid-template-columns: 1.1rem 1fr;
+      gap: 0 0.5rem;
+      font-size: 0.92rem;
+      line-height: 1.78;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .life-events li::before {
+      content: '•';
+      color: var(--accent);
+      font-size: 1rem;
+      padding-top: 0.05em;
+    }
+
+    /* ── DEEMING RULE CALLOUT ── */
+    .deeming-callout {
+      background: #f0e8e8;
+      border: 1px solid #c8a0a0;
+      border-left: 4px solid var(--accent);
+      padding: 0.9rem 1.1rem;
+      margin: 0.4rem 0 0.4rem;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+
+    .deeming-callout strong {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px dashed var(--rule);
+      margin: 2.2rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.72rem;
+      color: var(--margin-note);
+      font-family: 'Source Code Pro', monospace;
+      letter-spacing: 0.04em;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 640px) {
+      .document { padding: 2.5rem 1.8rem 3rem; }
+      .document::before { left: 1.6rem; }
+      .para { grid-template-columns: 2.8rem 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="document">
+
+  <header>
+    <p class="folio-ref">Income Tax Folio</p>
+    <h1><em>S1-F3-C2</em> — Principal Residence</h1>
+    <div class="header-meta">
+      <span>Date: January 30, 2024</span>
+      <span>Series 1: Individuals</span>
+      <span>Folio 3: Family Unit Issues</span>
+      <span>Chapter 2</span>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    Series 1: Individuals &nbsp;›&nbsp; Folio 3: Family Unit Issues &nbsp;›&nbsp; Chapter 2: Principal Residence
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-box">
+    <p class="box-label">Summary</p>
+    <p>This Chapter discusses the principal residence exemption, which can eliminate or reduce (for income tax purposes) a capital gain on the disposition of a taxpayer's principal residence.</p>
+    <p>In order for a property to qualify for designation as the taxpayer's principal residence, he or she must own the property. Joint ownership with another person qualifies for this purpose.</p>
+    <p>The housing unit representing the taxpayer's principal residence generally must be inhabited by the taxpayer or by his or her spouse or common-law partner, former spouse or common-law partner, or child. A taxpayer can designate only one property as his or her principal residence for a particular tax year. Furthermore, for a tax year that is after the 1981 year, only one property per family unit can be designated as a principal residence.</p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    The Canada Revenue Agency (CRA) issues income tax folios to provide a summary of technical interpretations and positions regarding certain provisions contained in income tax law. Due to their technical nature, folios are used primarily by tax specialists and other individuals who have an interest in tax matters. While each paragraph in a chapter of a folio may relate to provisions of the law in force at the time it was written (see the Application section), the information provided is not a substitute for the law. The reader should, therefore, consider the chapter's information in light of the relevant provisions of the law in force for the particular tax year being considered.
+    <br><br>
+    The CRA may have published additional guidance and detailed filing instructions on matters discussed in this Chapter. See the CRA's Forms and publications web page for this information and other topics that may be of interest.
+  </div>
+
+  <!-- DISCUSSION AND INTERPRETATION -->
+  <p class="section-heading">Discussion and Interpretation</p>
+
+  <p class="section-heading" style="font-size:0.95rem; margin-top:1rem;">Introduction</p>
+
+  <div class="para">
+    <span class="para-num">¶2.1</span>
+    <span class="para-body">Various topics concerning the principal residence exemption are discussed in this Chapter. It should be noted that some of these topics are not relevant for all taxpayers. For example, a resident of Canada who owns only one housing unit which is situated in Canada on land of one-half hectare or less and which has been used since its acquisition strictly as their residence, will usually find that ¶2.32 to 2.78 have no particular relevance.</span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.2</span>
+    <span class="para-body">Subject to the flipped property rules, if a property qualifies as a taxpayer's principal residence, they can use the principal residence exemption to reduce or eliminate any capital gain otherwise occurring, for income tax purposes, on the disposition (or deemed disposition) of the property. The term <em>principal residence</em> is defined in section 54. The principal residence exemption is claimed under paragraph 40(2)(b), or under paragraph 40(2)(c) where land used in a farming business carried on by the taxpayer includes his or her principal residence.</span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.3</span>
+    <span class="para-body">Unless otherwise stated, any reference in this Chapter to a <em>tax year</em> or <em>year</em> means a particular tax year for which the principal residence exemption is being claimed.</span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.4</span>
+    <span class="para-body">Various references are made throughout this Chapter to a taxpayer's spouse or common-law partner and child. For the 1993 to 2000 tax years, former subsection 252(4) extended the meaning of the term <em>spouse</em> to include a common-law spouse of the opposite sex. Effective in 2001, the extended meaning of spouse in subsection 252(4) has been replaced with the term <em>common-law partner</em> in subsection 248(1) which can now also include a person of the same sex. A transitional rule for the 1998, 1999 and 2000 tax years allowed same-sex couples to elect to be treated as common-law partners under the Act for those years. For more information about the meaning of the terms spouse and common-law partner, see the current version of the Guide 5000-G, <em>General Income Tax and Benefit Guide</em>. For purposes of applying the rules in subsections 70(6) and 73(1) as discussed in ¶2.69, see also the extended meaning of <em>spouse</em> and <em>former spouse</em> in subsection 252(3), as it reads for the particular tax year being considered. Subsection 252(1), as it reads for the particular tax year being considered, extends the meaning of <em>child</em> for purposes of applying all the rules in the Act, including the principal residence exemption rules, for that year.</span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.5</span>
+    <span class="para-body">It is also possible for a personal trust to claim the principal residence exemption on the disposition of a property. This is discussed in ¶2.65 to 2.66.4 and ¶2.69.</span>
+  </div>
+
+  <hr class="section-divider">
+
+  <p class="section-heading" style="font-size:0.95rem; margin-top:1rem;">When the Sale of a Property Results in Business Income</p>
+
+  <div class="para">
+    <span class="para-num">¶2.6</span>
+    <span class="para-body">Where the gain from the sale of a taxpayer's personal residence results in business income (as opposed to a capital gain), the gain cannot be exempt from income tax as a result of the principal residence exemption under paragraph 40(2)(b). An individual does not have to be involved in the housing construction industry to have business income from the sale of houses, and the sale of one house can result in business income. For more information about taxpayers buying and selling their own houses for the purpose of earning income, see Interpretation Bulletin IT-218R, <em>Profits, Capital Gains and Losses from the Sale of Real Estate, Including Farmland and Inherited Land and Conversion of Real Estate from Capital Property to Inventory and Vice Versa</em>, and Interpretation Bulletin IT-459, <em>Adventure or Concern in the Nature of Trade</em>.</span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.6.1</span>
+    <span class="para-body">Residential properties (including residential rental properties) that are sold on or after January 1, 2023, are subject to the flipped property rules. These rules ensure that profits from residential property flipping are fully included in income for dispositions that occur after 2022. Where these rules apply, profits on the sale of a flipped property (as that term is defined in subsection 12(13)) cannot be treated as a capital gain and the principal residence exemption is not available.</span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.6.2</span>
+    <span class="para-body">
+      Specifically, the flipped property rules rely on a deeming rule in subsection 12(12). This deeming rule is applicable to all taxpayers, including corporations. If it applies, profits from the sale of a taxpayer's flipped property will be deemed to be business income and fully included in income. <em>Flipped property</em> generally means a housing unit, or a right to acquire a housing unit, (other than inventory) located in Canada that was owned by the taxpayer, or in the case of a right to acquire, held by the taxpayer for less than 365 consecutive days prior to the disposition (12-month ownership period), subject to certain life event exceptions discussed in ¶2.6.4.
+    </span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.6.3</span>
+    <span class="para-body">The deeming rule applies to profits arising from the disposition of the rights to purchase a residential property in Canada via an assignment sale. Profits arising from an assignment sale are deemed to be business income if the rights to purchase a property are assigned before the end of the 12-month ownership period.</span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.6.4</span>
+    <span class="para-body">
+      A property will not be a flipped property and subsection 12(12) will not apply, where the disposition of the property can reasonably be considered to occur due to, or in anticipation of, one or more of the following life events:
+      <ul class="life-events" style="margin-top:0.7rem;">
+        <li>The death of the taxpayer or a person related to the taxpayer.</li>
+        <li>One or more persons related to the taxpayer becomes a member of the taxpayer's household or the taxpayer joins a related person's household (for example, a birth of a child, an adoption, the care of an elderly parent).</li>
+        <li>The breakdown of a marriage or common-law partnership, where the taxpayer has been living separate and apart from their spouse or common-law partner because of this breakdown in the relationship for a period of at least 90 days prior to the disposition.</li>
+        <li>A threat to the personal safety of the taxpayer or a related person, such as the threat of domestic violence.</li>
+        <li>A taxpayer or a related person suffers from a serious disability or illness.</li>
+        <li>An eligible relocation of the taxpayer or the taxpayer's spouse or common-law partner (generally this is a relocation that enables the person to carry on business, be employed or attend full-time post-secondary education).</li>
+        <li>An involuntary termination of the taxpayer's employment or the employment of the taxpayer's spouse or common-law partner.</li>
+        <li>The insolvency of the taxpayer.</li>
+        <li>The expropriation or the destruction of the taxpayer's residence (for example, due to a natural or man-made disaster).</li>
+      </ul>
+    </span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.6.5</span>
+    <span class="para-body">
+      <div class="deeming-callout">
+        <strong>s. 12(14)</strong> — A business loss incurred from the disposition of a flipped property is deemed to be nil pursuant to subsection 12(14).
+      </div>
+    </span>
+  </div>
+
+  <div class="para">
+    <span class="para-num">¶2.6.6</span>
+    <span class="para-body">It is possible that the deeming rule in subsection 12(12) will not apply because of one or more of the life events listed in ¶2.6.4 or because the property was owned for at least 365 consecutive days prior to its disposition. If so, it remains a question of fact whether profit from the disposition is taxed as business income. For more information on residential property flipping see the <em>Capital Gains Guide</em>, and the web pages <em>Report your real estate income</em>, or <em>Tax effects of buying real estate to sell for a profit</em>.</span>
+  </div>
+
+  <footer>
+    <span>Canada Revenue Agency — Income Tax Folio S1-F3-C2</span>
+    <span>Date: January 30, 2024</span>
+    <span>Series 1 · Folio 3 · Chapter 2</span>
+  </footer>
+
+</div>
+</body>
+</html>
