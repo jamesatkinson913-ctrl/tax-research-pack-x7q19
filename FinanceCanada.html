@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Canada — Residential Property Flipping Rule — ss. 12(12)–(14)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208;
+      --parchment: #f5f0e8;
+      --rule: #c8b89a;
+      --accent: #8b1a1a;
+      --margin-note: #6b5c3e;
+      --code-bg: #ede8de;
+      --subhead-bg: #eae4d8;
+      --editorial: #3a2e1e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #d6cfc0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          rgba(180,165,140,0.25) 27px,
+          rgba(180,165,140,0.25) 28px
+        );
+      font-family: 'Libre Baskerville', Georgia, serif;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .document {
+      background: var(--parchment);
+      max-width: 900px;
+      width: 100%;
+      border: 1px solid var(--rule);
+      box-shadow:
+        0 2px 0 #b8a882,
+        4px 6px 32px rgba(0,0,0,0.22),
+        0 0 0 6px rgba(245,240,232,0.6);
+      padding: 4rem 5rem 5rem;
+      position: relative;
+      border-radius: 1px;
+    }
+
+    .document::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 4.2rem;
+      width: 1.5px;
+      height: 100%;
+      background: rgba(139,26,26,0.18);
+    }
+
+    .document::after {
+      content: '';
+      position: absolute;
+      top: 2.8rem;
+      left: 3rem;
+      right: 3rem;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent) 0 18px, transparent 18px 100%);
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .doc-type {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--margin-note);
+      margin-bottom: 0.4rem;
+    }
+
+    header h1 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    header h1 em { font-style: italic; color: var(--accent); }
+
+    .header-sub {
+      margin-top: 0.55rem;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--margin-note);
+    }
+
+    /* ── TOP-LEVEL PROVISION GROUP ── */
+    .provision-group {
+      margin-bottom: 3rem;
+    }
+
+    .provision-group-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 1.6rem;
+    }
+
+    .prov-ref {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .prov-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* ── INDIVIDUAL ENTRY ── */
+    .entry {
+      margin-bottom: 2rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px dashed var(--rule);
+    }
+
+    .entry:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* source tag line */
+    .entry-source {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .entry-date {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+      background: var(--code-bg);
+      padding: 0.1rem 0.45rem;
+      border: 1px solid var(--rule);
+    }
+
+    .entry-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--editorial);
+      font-style: italic;
+    }
+
+    /* body text */
+    .entry-body {
+      font-size: 0.93rem;
+      line-height: 1.85;
+      color: var(--ink);
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .entry-body p { margin-bottom: 0.75rem; }
+    .entry-body p:last-child { margin-bottom: 0; }
+    .entry-body em { font-style: italic; }
+
+    /* bullet lists within entries */
+    .entry-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    .entry-body ul li {
+      display: grid;
+      grid-template-columns: 1rem 1fr;
+      gap: 0 0.5rem;
+      font-size: 0.92rem;
+      line-height: 1.78;
+      margin-bottom: 0.4rem;
+    }
+
+    .entry-body ul li::before {
+      content: '•';
+      color: var(--accent);
+    }
+
+    /* life-event label (bold intro) */
+    .entry-body ul li strong {
+      font-weight: 700;
+    }
+
+    /* editorial annotations */
+    .editorial {
+      background: var(--subhead-bg);
+      border-left: 3px solid var(--margin-note);
+      padding: 0.5rem 0.9rem;
+      margin: 0.6rem 0;
+      font-size: 0.83rem;
+      line-height: 1.7;
+      color: var(--margin-note);
+      font-style: italic;
+    }
+
+    /* deeming rule callout */
+    .deeming-box {
+      background: #f0e8e8;
+      border: 1px solid #c8a0a0;
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1.1rem;
+      margin: 0.6rem 0;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+
+    .deeming-box ul {
+      margin-top: 0.4rem;
+    }
+
+    /* fiscal estimate callout */
+    .fiscal {
+      background: var(--code-bg);
+      border: 1px solid var(--rule);
+      padding: 0.55rem 0.9rem;
+      margin: 0.6rem 0;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.78rem;
+      color: var(--margin-note);
+      line-height: 1.65;
+    }
+
+    .fiscal .fiscal-label {
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* cross-reference */
+    .xref {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: var(--code-bg);
+      padding: 0.05rem 0.3rem;
+      border: 1px solid var(--rule);
+      white-space: nowrap;
+    }
+
+    hr.section-divider {
+      border: none;
+      border-top: 1.5px solid var(--rule);
+      margin: 2.8rem 0;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.72rem;
+      color: var(--margin-note);
+      font-family: 'Source Code Pro', monospace;
+      letter-spacing: 0.04em;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 640px) {
+      .document { padding: 2.5rem 1.8rem 3rem; }
+      .document::before { left: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="document">
+
+  <header>
+    <p class="doc-type">Department of Finance Canada — Legislative History &amp; Background</p>
+    <h1><em>Income Tax Act</em> — Residential Property Flipping Rule</h1>
+    <p class="header-sub">Subsections 12(12), 12(13) and 12(14) — Budget Supplementary Information, Technical Notes &amp; Related Materials</p>
+  </header>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ss. 12(12)–(14): OVERVIEW ENTRIES         -->
+  <!-- ══════════════════════════════════════════ -->
+
+  <div class="provision-group">
+    <div class="provision-group-heading">
+      <span class="prov-ref">ss. 12(12)–(14)</span>
+      <span class="prov-title">Residential Property Flipping Rule — Overview</span>
+    </div>
+
+    <!-- Budget 2022 BSI -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">2022 BSI</span>
+        <span class="entry-title">Budget 2022 — Supplementary Information</span>
+      </div>
+      <div class="entry-body">
+        <p>Property flipping involves purchasing real estate with the intention of reselling the property in a short period of time to realize a profit. Profits from flipping properties are fully taxable as business income <span class="xref">s. 9(1)</span>, meaning they are not eligible for the 50% capital gains inclusion rate <span class="xref">s. 38(a)</span> or the Principal Residence Exemption <span class="xref">s. 40(2)(b)</span>.</p>
+        <p>The Government is concerned that certain individuals engaged in flipping residential real estate are not properly reporting their profits as business income. Instead, these individuals may be improperly reporting their profits as capital gains and, in some cases, claiming the Principal Residence Exemption.</p>
+        <p>Budget 2022 proposes to introduce a new deeming rule to ensure profits from flipping residential real estate are always subject to full taxation. Specifically, profits arising from dispositions of residential property (including a rental property) that was owned for less than 12 months would be deemed to be business income.</p>
+        <p>The new deeming rule would not apply if the disposition of property is in relation to at least one of the life events listed below:</p>
+        <ul>
+          <li><strong>Death:</strong> a disposition due to, or in anticipation of, the death of the taxpayer or a related person.</li>
+          <li><strong>Household addition:</strong> a disposition due to, or in anticipation of, a related person joining the taxpayer's household or the taxpayer joining a related person's household (e.g., birth of a child, adoption, care of an elderly parent).</li>
+          <li><strong>Separation:</strong> a disposition due to the breakdown of a marriage or common-law partnership, where the taxpayer has been living separate and apart from their spouse or common-law partner because of a breakdown in the relationship for a period of at least 90 days.</li>
+          <li><strong>Personal safety:</strong> a disposition due to a threat to the personal safety of the taxpayer or a related person, such as the threat of domestic violence.</li>
+          <li><strong>Disability or illness:</strong> a disposition due to a taxpayer or a related person suffering from a serious disability or illness.</li>
+          <li><strong>Employment change:</strong> a disposition for the taxpayer or their spouse or common-law partner to work at a new location or due to an involuntary termination of employment. In the case of work at a new location, the taxpayer's new home must be at least 40 kilometres closer to the new work location.</li>
+          <li><strong>Insolvency:</strong> a disposition due to insolvency or to avoid insolvency (i.e., due to an accumulation of debts).</li>
+          <li><strong>Involuntary disposition:</strong> a disposition against someone's will, for example, due to expropriation or the destruction or condemnation of the taxpayer's residence due to a natural or man-made disaster.</li>
+        </ul>
+        <div class="editorial">Where the new deeming rule applies, the Principal Residence Exemption would not be available. [This was already the case in that the exemption in 40(2)(b) applies only to capital property—ed.]</div>
+        <p>Where the new deeming rule does not apply because of a life event listed above or because the property was owned for 12 months or more, it would remain a question of fact whether profits from the disposition are taxed as business income.</p>
+        <p>The measure would apply in respect of residential properties sold on or after January 1, 2023.</p>
+        <div class="fiscal">
+          <span class="fiscal-label">Fiscal Estimate — Budget 2022</span>
+          Budget Table 1 estimates this measure will earn the federal government $4 million in 2022–23, and only $15M in each of 2023–24 to 2026–27.
+        </div>
+      </div>
+    </div>
+
+    <!-- Dec 2021 Mandate Letter -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Dec. 16, 2021</span>
+        <span class="entry-title">Prime Minister's Mandate Letter to Minister of Finance</span>
+      </div>
+      <div class="entry-body">
+        <p>To realize these objectives, I ask that you achieve results for Canadians by delivering the following commitments …</p>
+        <ul>
+          <li>In support of a Fairness in Real Estate Action Plan, work with the Minister of Housing and Diversity and Inclusion to deter "renovictions" and address housing affordability in Canada, including by: — Establishing an anti-flipping tax on residential properties, requiring properties to be held for at least 12 months.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sept 2021 Liberal Platform -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Sept. 2021</span>
+        <span class="entry-title">Liberal Party of Canada — Election Platform (liberal.ca)</span>
+      </div>
+      <div class="entry-body">
+        <p><strong>Curb Speculation and House Flipping</strong></p>
+        <p>To reduce speculative demand in the marketplace and help to cool excessive price growth, a re-elected Liberal government will:</p>
+        <ul>
+          <li>Establish an anti-flipping tax on residential properties, requiring properties to be held for at least 12 months.</li>
+        </ul>
+        <p>Canadians who encounter changes in life circumstances due to, for example, pregnancy, death, new jobs, divorce, or disability will be exempt from this policy. As this tax is introduced, rules will be established to ensure that sellers subject to this tax are able to deduct legitimate investments in refurbishment.</p>
+      </div>
+    </div>
+
+    <!-- PBO Sept 2021 -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Sept. 1, 2021</span>
+        <span class="entry-title">Parliamentary Budget Officer — Election Proposal Costing (468229)</span>
+      </div>
+      <div class="entry-body">
+        <p><strong>Anti-house flipping tax — Description</strong></p>
+        <p>Removing the principal residence exemption for individuals that sell their principal residence within 12 months of the purchase, or transfer of title, and treating the gains from the sale as taxable capital gains beginning in the 2022 tax year.</p>
+        <div class="editorial">This proposal as described will accomplish nothing, as the CRA already presumes that a short hold of less than a year means the sale is on income account—ed.</div>
+        <p>Exceptions to this proposal will include the sale of vacant land, the sale of a home destroyed, condemned, or damaged due to natural or man-made disaster during the 12-month period, the owner's previous home having been destroyed or condemned, a death, divorce, separation, serious illness/injury, or change of employment of the beneficial owner during the 12-month period, or the beneficial owner having been a member of the Canadian armed forces during that period.</p>
+        <div class="fiscal">
+          <span class="fiscal-label">Fiscal Estimate — PBO / Platform Fiscal Plan</span>
+          The election platform's Fiscal and Costing Plan (relying on the Parliamentary Budget Officer) estimates this measure will earn the federal government $2 million in 2021–22, $8M in each of 2022–23 and 2023–24, and $9M in each of 2024–25 and 2025–26.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════════ -->
+  <!-- s. 12(12) ENTRIES             -->
+  <!-- ══════════════════════════════ -->
+
+  <div class="provision-group">
+    <div class="provision-group-heading">
+      <span class="prov-ref">s. 12(12)</span>
+      <span class="prov-title">Flipped Property — Deemed Business</span>
+    </div>
+
+    <!-- Nov 2022 TN -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Nov. 2022 TN</span>
+        <span class="entry-title">Fall Economic Statement — Technical Notes</span>
+      </div>
+      <div class="entry-body">
+        <p>Subsection 12(12) provides a deeming rule that results in a gain on the disposition of a flipped property (defined in new subsection 12(13)) being fully taxable as ordinary income. The deeming rule applies if the disposition would have otherwise resulted in a capital gain in the absence of this deeming rule and the principal residence exemption. Since the rule effectively recharacterizes capital gains as fully taxable ordinary income, it does not apply to dispositions that would otherwise result in ordinary income. The rule will also not apply to dispositions that would result in a loss. Treating the taxpayer's gain as business income is achieved by a deeming rule providing that, throughout the period that the taxpayer owned the flipped property:</p>
+        <div class="deeming-box">
+          <ul>
+            <li>the taxpayer is deemed to carry on a business that is an adventure or concern in the nature of trade with respect to the flipped property;</li>
+            <li>the flipped property is deemed to be inventory of the taxpayer's business; and</li>
+            <li>the flipped property is deemed not to be capital property of the taxpayer.</li>
+          </ul>
+        </div>
+        <p>This amendment applies in respect of dispositions that occur after 2022.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════════ -->
+  <!-- s. 12(13) ENTRIES             -->
+  <!-- ══════════════════════════════ -->
+
+  <div class="provision-group">
+    <div class="provision-group-heading">
+      <span class="prov-ref">s. 12(13)</span>
+      <span class="prov-title">Definition of <em>Flipped Property</em></span>
+    </div>
+
+    <!-- Aug 2024 TN -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Aug. 2024 TN</span>
+        <span class="entry-title">Technical Amendments — Technical Notes</span>
+      </div>
+      <div class="entry-body">
+        <p>Subsection 12(13) provides the definition of <em>flipped property</em> of a taxpayer.</p>
+        <p>Paragraph 12(13)(b) provides exclusions to the definition of <em>flipped property</em> in certain circumstances. For example, subparagraph 12(13)(b)(i) provides an exclusion for property owned by the taxpayer for less than 365 consecutive days prior to its disposition where the disposition can reasonably be considered to occur due to, or in anticipation of, the death of the taxpayer or a person related to the taxpayer.</p>
+        <p>Under existing paragraph 12(13)(b), where the taxpayer is a trust, a deemed disposition by the taxpayer as a consequence of paragraph 104(4)(a) would be captured by the definition of <em>flipped property</em>. A beneficiary under a trust is not related to the trust. The death of the beneficiary, whose death triggers the deemed disposition under paragraph 104(4)(a), is not the death of a person related to the taxpayer, and therefore does not trigger the exclusion provided in subparagraph 12(13)(b)(i).</p>
+        <p>Paragraph 12(13)(b) is amended to add an exclusion in new subparagraph 12(13)(b)(i.1) for a deemed disposition by a trust as a consequence of paragraph 104(4)(a).</p>
+        <p>This amendment applies in respect of dispositions that occur on or after January 1, 2023.</p>
+      </div>
+    </div>
+
+    <!-- Apr 2024 Housing Plan -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Apr. 12, 2024</span>
+        <span class="entry-title">Canada's Housing Plan — Infrastructure Canada</span>
+      </div>
+      <div class="entry-body">
+        <p><strong>Cracking Down on Real Estate Fraud</strong></p>
+        <p>Cracking down on real estate tax fraud protects homebuyers by making the housing market healthier, more competitive, and stable. The government is committed to reinforcing the fairness of the tax system and combatting tax non-compliance across the housing sector. Budget 2024 will propose funding for the Canada Revenue Agency to continue addressing tax non-compliance in real estate transactions. By ensuring that everyone pays their fair share, the government is protecting first-time home buyers from artificial market distortions that increase home prices.</p>
+      </div>
+    </div>
+
+    <!-- 2024 Federal Budget -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">2024</span>
+        <span class="entry-title">2024 Federal Budget — Chapter 1</span>
+      </div>
+      <div class="entry-body">
+        <p><strong>Cracking Down on Real Estate Fraud</strong></p>
+        <p>Cracking down on real estate tax fraud protects home buyers and levels the playing field for those who play by the rules. The government is committed to reinforcing the fairness of the tax system and combatting tax non-compliance across the housing sector.</p>
+        <p>Budget 2024 proposes to provide $73.1 million over five years, starting in 2024–25, and $14.7 million per year ongoing to the Canada Revenue Agency to continue addressing tax non-compliance in real estate transactions. By ensuring that everyone pays their fair share, the government is protecting home buyers from artificial market distortions that increase home prices.</p>
+      </div>
+    </div>
+
+    <!-- Apr 2023 TN (Budget) -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Apr. 2023 TN</span>
+        <span class="entry-title">Budget 2023 — Technical Notes</span>
+      </div>
+      <div class="entry-body">
+        <p>Subsection 12(13) provides the definition <em>flipped property</em>, which is relevant for new subsections 12(12) and (14). Together, these subsections provide a deeming rule to ensure profits from flipping residential real estate are always subject to full taxation.</p>
+        <p>A flipped property of a taxpayer is a housing unit that:</p>
+        <ul>
+          <li>is located in Canada;</li>
+          <li>would not be inventory of the taxpayer if the definition <em>inventory</em> was read without reference to new subsection 12(12) (this prevents circularity and ensures that only a property that would otherwise be a capital property is subject to the rules in subsections (12) and (14)); and</li>
+          <li>was owned by the taxpayer for less than 365 consecutive days prior to the disposition of the property.</li>
+        </ul>
+        <p>Subsection 12(13) is amended to extend the definition of <em>flipped property</em> to include a right to acquire a housing unit in Canada. As such, profits arising from an assignment sale would be deemed to be business income if the rights to purchase a property were assigned after having been held for less than 12 months.</p>
+        <p>The existing 365 day holding period related to the actual housing unit would continue to be a separate test that only commences when the taxpayer acquires ownership of the housing unit. This means that the residential property flipping rule could apply when selling a constructed property within one year of acquiring ownership, regardless of how long the taxpayer held the rights to purchase the property before it was constructed.</p>
+        <p>The definition has a number of exclusions that relate to the reason for the disposition. These exclusions will also apply in respect of a disposition of a right to acquire a housing unit. A property will not be a flipped property if the disposition can reasonably be considered to occur due to, or in anticipation of, one or more of the following events:</p>
+        <ul>
+          <li>the death of the taxpayer or a person related to the taxpayer;</li>
+          <li>one or more persons related to the taxpayer becoming a member of the taxpayer's household or the taxpayer becoming a member of the household of a related person;</li>
+          <li>the breakdown of the marriage or common-law partnership of the taxpayer if the taxpayer has been living separate and apart from their spouse or common-law partner for at least 90 days prior to the disposition;</li>
+          <li>a threat to the personal safety of the taxpayer or a related person;</li>
+          <li>the taxpayer or a related person suffering from a serious illness or disability;</li>
+          <li>an eligible relocation of the taxpayer or the taxpayer's spouse or common-law partner, if the definition <em>eligible relocation</em> were read without reference to the requirements for the new work location and the new residence to be in Canada;</li>
+          <li>an involuntary termination of the employment of the taxpayer or the taxpayer's spouse or common-law partner;</li>
+          <li>the insolvency of the taxpayer; or</li>
+          <li>the destruction or expropriation of the property.</li>
+        </ul>
+        <p>This amendment applies in respect of dispositions that occur after 2022.</p>
+        <div class="fiscal">
+          <span class="fiscal-label">Fiscal Estimate — Budget 2023 Supplementary Information</span>
+          Table 1 of the Supplementary Information forecasts that this new change will earn the federal government $1 million each year from 2023–24 through 2027–28.
+        </div>
+      </div>
+    </div>
+
+    <!-- Nov 2022 TN -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Nov. 2022 TN</span>
+        <span class="entry-title">Fall Economic Statement — Technical Notes</span>
+      </div>
+      <div class="entry-body">
+        <p>Subsection 12(13) provides the definition <em>flipped property</em>, which is relevant for new subsections 12(12) and (14).</p>
+        <p>A flipped property of a taxpayer is a housing unit that:</p>
+        <ul>
+          <li>is located in Canada;</li>
+          <li>would not be inventory of the taxpayer if the definition <em>inventory</em> was read without reference to new subsection 12(12) (this prevents circularity and ensures that only a property that would otherwise be a capital property is subject to the rules in subsections (12) and (14)); and</li>
+          <li>was owned by the taxpayer for less than 365 consecutive days prior to the disposition of the property.</li>
+        </ul>
+        <p>The definition has a number of exclusions that relate to the reason for the disposition. A property will not be a flipped property if the disposition can reasonably be considered to occur due to, or in anticipation of, one or more of the following events:</p>
+        <ul>
+          <li>the death of the taxpayer or a person related to the taxpayer;</li>
+          <li>one or more persons related to the taxpayer becoming a member of the taxpayer's household or the taxpayer becoming a member of the household of a related person;</li>
+          <li>the breakdown of the marriage or common-law partnership of the taxpayer if the taxpayer has been living separate and apart from their spouse or common-law partner for at least 90 days prior to the disposition;</li>
+          <li>a threat to the personal safety of the taxpayer or a related person;</li>
+          <li>the taxpayer or a related person suffering from a serious illness or disability;</li>
+          <li>an eligible relocation of the taxpayer or the taxpayer's spouse or common-law partner, if that definition was read without reference to the requirements for the new work location and the new residence to be in Canada;</li>
+          <li>an involuntary termination of the employment of the taxpayer or the taxpayer's spouse or common-law partner;</li>
+          <li>the insolvency of the taxpayer; or</li>
+          <li>the destruction or expropriation of the housing unit.</li>
+        </ul>
+        <p>This amendment applies in respect of dispositions that occur after 2022.</p>
+      </div>
+    </div>
+
+    <!-- Nov 3 2022 FES Supplementary Information -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Nov. 3, 2022</span>
+        <span class="entry-title">Federal Economic Statement — Supplementary Information: Extension of the Residential Property Flipping Rule to Assignment Sales</span>
+      </div>
+      <div class="entry-body">
+        <p>Budget 2022 proposed the Residential Property Flipping Rule, a new deeming rule to ensure profits from flipping residential real estate are always subject to full taxation. Starting on January 1, 2023, profits arising from dispositions of residential property (including a rental property) that was owned for less than 12 months would be deemed to be business income, subject to the exceptions listed below.</p>
+        <p>The 2022 Fall Economic Statement proposes to extend this new deeming rule to profits arising from the disposition of the rights to purchase a residential property via an assignment sale. Profits arising from an assignment sale would be deemed to be business income if the rights to purchase a property were assigned after having been owned for less than 12 months.</p>
+        <p>The Residential Property Flipping Rule would not apply when a transaction is in relation to at least one of the life events listed below:</p>
+        <ul>
+          <li>The death of the taxpayer or a person related to the taxpayer;</li>
+          <li>One or more persons related to the taxpayer becoming a member of the taxpayer's household or the taxpayer becoming a member of the household of a related person;</li>
+          <li>The breakdown of the marriage or common-law partnership of the taxpayer if the taxpayer has been living separate and apart from their spouse or common-law partner for at least 90 days prior to the disposition;</li>
+          <li>A threat to the personal safety of the taxpayer or a related person;</li>
+          <li>The taxpayer or a related person suffering from a serious illness or disability;</li>
+          <li>An eligible relocation of the taxpayer or the taxpayer's spouse or common-law partner (i.e., generally a relocation that enables the taxpayer to carry on business, be employed or attend full-time post-secondary education);</li>
+          <li>An involuntary termination of the employment of the taxpayer or the taxpayer's spouse or common-law partner;</li>
+          <li>The insolvency of the taxpayer; or</li>
+          <li>The destruction or expropriation of the property.</li>
+        </ul>
+        <p>The 12-month holding period for the Residential Property Flipping Rule will reset once the property is owned by the taxpayer who entered into a purchase and sale agreement. This will ensure the Residential Property Flipping Rule cannot be bypassed when selling a constructed property simply because a taxpayer held the rights to purchase the property before it was constructed. In other words, the 12-month holding period would reset once a taxpayer secures ownership of the property.</p>
+        <p>Where the new deeming rule does not apply because of a life event listed above or because the property was owned for 12 months or more, it would remain a question of fact whether profits from the disposition are taxed as business income.</p>
+        <p>The Residential Property Flipping Rule, including the extension for assignment sales, would apply in respect of transactions occurring on or after January 1, 2023.</p>
+      </div>
+    </div>
+
+    <!-- 2022 NWMM BSI -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">2022 NWMM</span>
+        <span class="entry-title">Notice of Ways and Means Motion — Budget Supplementary Information</span>
+      </div>
+      <div class="entry-body">
+        <p>See under <span class="xref">ss. 12(12)–(14)</span>.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════════ -->
+  <!-- s. 12(14) ENTRIES             -->
+  <!-- ══════════════════════════════ -->
+
+  <div class="provision-group">
+    <div class="provision-group-heading">
+      <span class="prov-ref">s. 12(14)</span>
+      <span class="prov-title">Flipped Property — Loss Denial</span>
+    </div>
+
+    <!-- Apr 2023 TN -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Apr. 2023 TN</span>
+        <span class="entry-title">Budget 2023 — Technical Notes</span>
+      </div>
+      <div class="entry-body">
+        <p>See under <span class="xref">s. 12(13)</span>.</p>
+      </div>
+    </div>
+
+    <!-- Nov 2022 TN -->
+    <div class="entry">
+      <div class="entry-source">
+        <span class="entry-date">Nov. 2022 TN</span>
+        <span class="entry-title">Fall Economic Statement — Technical Notes</span>
+      </div>
+      <div class="entry-body">
+        <div class="deeming-box">
+          New subsection 12(14) provides that a taxpayer's loss from a business in respect of a flipped property, if any, is deemed to be nil. Accordingly, a taxpayer cannot realize a business loss solely because of a capital property being considered a flipped property and deemed to be inventory under subsection 12(12).
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>Department of Finance Canada</span>
+    <span>Income Tax Act — ss. 12(12), 12(13), 12(14)</span>
+    <span>Residential Property Flipping Rule — Legislative History</span>
+  </footer>
+
+</div>
+</body>
+</html>
