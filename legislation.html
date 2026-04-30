@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Act — Flipped Property Provisions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208;
+      --parchment: #f5f0e8;
+      --rule: #c8b89a;
+      --accent: #8b1a1a;
+      --accent-light: #b5291e;
+      --margin-note: #6b5c3e;
+      --highlight: #e8dfc8;
+      --code-bg: #ede8de;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #d6cfc0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          rgba(180,165,140,0.25) 27px,
+          rgba(180,165,140,0.25) 28px
+        );
+      font-family: 'Libre Baskerville', Georgia, serif;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .document {
+      background: var(--parchment);
+      max-width: 860px;
+      width: 100%;
+      border: 1px solid var(--rule);
+      box-shadow:
+        0 2px 0 #b8a882,
+        4px 6px 32px rgba(0,0,0,0.22),
+        0 0 0 6px rgba(245,240,232,0.6);
+      padding: 4rem 5rem 5rem;
+      position: relative;
+      border-radius: 1px;
+    }
+
+    /* Red margin rule */
+    .document::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 4.2rem;
+      width: 1.5px;
+      height: 100%;
+      background: rgba(139,26,26,0.18);
+    }
+
+    /* Top rule */
+    .document::after {
+      content: '';
+      position: absolute;
+      top: 2.8rem;
+      left: 3rem;
+      right: 3rem;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent) 0 18px, transparent 18px 100%);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .source-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--margin-note);
+      margin-bottom: 0.6rem;
+    }
+
+    header h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--margin-note);
+      font-style: italic;
+    }
+
+    /* Section container */
+    .provision {
+      margin-bottom: 2.8rem;
+    }
+
+    /* Section heading row */
+    .provision-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .provision-ref {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .provision-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    /* Preamble text */
+    .preamble {
+      font-size: 0.945rem;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* Paragraph list */
+    .paragraphs {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .paragraphs > li {
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      gap: 0 0.5rem;
+      font-size: 0.945rem;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 0.55rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .para-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      padding-top: 0.05em;
+      text-align: right;
+    }
+
+    /* Sub-paragraphs */
+    .subparagraphs {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .subparagraphs > li {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr;
+      gap: 0 0.5rem;
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 0.45rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .sub-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.78rem;
+      color: var(--margin-note);
+      font-weight: 600;
+      padding-top: 0.05em;
+      text-align: right;
+    }
+
+    /* Definition callout */
+    .definition-note {
+      background: var(--code-bg);
+      border-left: 3px solid var(--accent);
+      padding: 0.7rem 1rem;
+      margin: 1rem 0 1.2rem;
+      font-size: 0.85rem;
+      color: var(--margin-note);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .definition-note strong {
+      font-style: normal;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    /* Loss denial callout */
+    .loss-denial {
+      background: #f0e8e8;
+      border: 1px solid #c8a0a0;
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.2rem;
+      margin-top: 0.5rem;
+      font-size: 0.945rem;
+      line-height: 1.85;
+      color: var(--ink);
+    }
+
+    /* Divider between sections */
+    .section-divider {
+      border: none;
+      border-top: 1px dashed var(--rule);
+      margin: 2.5rem 0;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.72rem;
+      color: var(--margin-note);
+      font-family: 'Source Code Pro', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 640px) {
+      .document { padding: 2.5rem 2rem 3rem; }
+      .document::before { left: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="document">
+
+    <header>
+      <p class="source-label">R.S.C. 1985, c. 1 (5th Supp.)</p>
+      <h1><em>Income Tax Act</em></h1>
+      <p class="subtitle">Flipped Property — Subsections 12(12), 12(13) and 12(14)</p>
+    </header>
+
+    <!-- s. 12(12) -->
+    <div class="provision">
+      <div class="provision-heading">
+        <span class="provision-ref">s. 12(12)</span>
+        <span class="provision-title">Flipped property — deemed business</span>
+      </div>
+      <p class="preamble">
+        For the purposes of this Act, if, absent this subsection and paragraph 40(2)(b), a taxpayer would have had a gain from the disposition of a flipped property, then throughout the period that the taxpayer owned the flipped property
+      </p>
+      <ul class="paragraphs">
+        <li>
+          <span class="para-label">(a)</span>
+          <span>the taxpayer is deemed to carry on a business that is an adventure or concern in the nature of trade with respect to the flipped property;</span>
+        </li>
+        <li>
+          <span class="para-label">(b)</span>
+          <span>the flipped property is deemed to be inventory of the taxpayer's business; and</span>
+        </li>
+        <li>
+          <span class="para-label">(c)</span>
+          <span>the flipped property is deemed not to be capital property of the taxpayer.</span>
+        </li>
+      </ul>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- s. 12(13) -->
+    <div class="provision">
+      <div class="provision-heading">
+        <span class="provision-ref">s. 12(13)</span>
+        <span class="provision-title">Definition of <em>flipped property</em></span>
+      </div>
+
+      <div class="definition-note">
+        <strong>SCOPE:</strong> For the purposes of subsections (12) and (14).
+      </div>
+
+      <p class="preamble">
+        A <strong>flipped property</strong> of a taxpayer means a property (other than a property, or a right to acquire property, that would be inventory of the taxpayer if the definition <em>inventory</em> in subsection 248(1) were read without reference to subsection (12)) that is
+      </p>
+      <ul class="paragraphs">
+        <li>
+          <span class="para-label">(a)</span>
+          <span>
+            prior to its disposition by the taxpayer, either
+            <ul class="subparagraphs" style="margin-top:0.45rem;">
+              <li>
+                <span class="sub-label">(i)</span>
+                <span>a housing unit located in Canada, or</span>
+              </li>
+              <li>
+                <span class="sub-label">(ii)</span>
+                <span>a right to acquire a housing unit located in Canada; and</span>
+              </li>
+            </ul>
+          </span>
+        </li>
+        <li>
+          <span class="para-label">(b)</span>
+          <span>
+            owned or, in the case of a right to acquire, held, by the taxpayer for less than 365 consecutive days prior to its disposition, other than a disposition that can reasonably be considered to occur due to, or in anticipation of, one or more of the following events:
+            <ul class="subparagraphs" style="margin-top:0.45rem;">
+              <li>
+                <span class="sub-label">(i)</span>
+                <span>the death of the taxpayer or a person related to the taxpayer,</span>
+              </li>
+              <li>
+                <span class="sub-label">(ii)</span>
+                <span>one or more persons related to the taxpayer becoming a member of the taxpayer's household or the taxpayer becoming a member of the household of a related person,</span>
+              </li>
+              <li>
+                <span class="sub-label">(iii)</span>
+                <span>the breakdown of the marriage or common-law partnership of the taxpayer if the taxpayer has been living separate and apart from their spouse or common-law partner for at least 90 days prior to the disposition,</span>
+              </li>
+              <li>
+                <span class="sub-label">(iv)</span>
+                <span>a threat to the personal safety of the taxpayer or a related person,</span>
+              </li>
+              <li>
+                <span class="sub-label">(v)</span>
+                <span>the taxpayer or a related person suffering from a serious illness or disability,</span>
+              </li>
+              <li>
+                <span class="sub-label">(vi)</span>
+                <span>an eligible relocation of the taxpayer or the taxpayer's spouse or common-law partner, if the definition <em>eligible relocation</em> were read without reference to the requirements for the new work location and the new residence to be in Canada,</span>
+              </li>
+              <li>
+                <span class="sub-label">(vii)</span>
+                <span>an involuntary termination of the employment of the taxpayer or the taxpayer's spouse or common-law partner,</span>
+              </li>
+              <li>
+                <span class="sub-label">(viii)</span>
+                <span>the insolvency of the taxpayer, or</span>
+              </li>
+              <li>
+                <span class="sub-label">(ix)</span>
+                <span>the destruction or expropriation of the property.</span>
+              </li>
+            </ul>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- s. 12(14) -->
+    <div class="provision">
+      <div class="provision-heading">
+        <span class="provision-ref">s. 12(14)</span>
+        <span class="provision-title">Flipped property — loss denial</span>
+      </div>
+      <div class="loss-denial">
+        For the purposes of this Part, a taxpayer's loss from a business in respect of a flipped property is deemed to be nil.
+      </div>
+    </div>
+
+    <footer>
+      <span>Income Tax Act, R.S.C. 1985, c. 1 (5th Supp.)</span>
+      <span>ss. 12(12)–12(14)</span>
+    </footer>
+
+  </div>
+</body>
+</html>
